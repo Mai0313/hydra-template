@@ -31,7 +31,6 @@ class RunIf:
     Fully compatible with `@pytest.mark`.
 
     Example:
-
     ```python
         @RunIf(min_torch="1.8")
         @pytest.mark.parametrize("arg1", [1.0, 2.0])
@@ -92,9 +91,7 @@ class RunIf:
             reasons.append(f"torch<{max_torch}")
 
         if min_python:
-            py_version = (
-                f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
-            )
+            py_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
             conditions.append(Version(py_version) < Version(min_python))
             reasons.append(f"python>={min_python}")
 
