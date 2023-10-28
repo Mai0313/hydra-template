@@ -3,10 +3,10 @@ name: Tests
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
     branches:
-      - master
+      - main
       - release/*
 
 jobs:
@@ -21,8 +21,10 @@ jobs:
           - ubuntu-latest
         python-version:
           - "3.9"
+          - "3.10"
+          # - "3.11"
 
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - name: Disable SSL Verify
@@ -38,6 +40,15 @@ jobs:
           # # Enable these three lines if you run on act
           # token: ${{ secrets.GITHUB_TOKEN }}
           # cache: 'pip'
+
+      # Disable cache since Github action cache storge is too small for Pytorch.
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-python${{ matrix.python-version }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-python${{ matrix.python-version }}-pip-
 
       - name: Install dependencies
         run: |
