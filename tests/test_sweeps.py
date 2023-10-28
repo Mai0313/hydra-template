@@ -84,6 +84,7 @@ def test_optuna_sweep(tmp_path: Path) -> None:
     run_sh_command(command)
 
 
+@pytest.mark.skip(reason="Need to fix for your own project.")
 @RunIf(wandb=True, sh=True)
 @pytest.mark.slow
 def test_optuna_sweep_ddp_sim_wandb(tmp_path: Path) -> None:
