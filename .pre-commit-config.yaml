@@ -56,13 +56,13 @@ repos:
           - --config=pyproject.toml
           - --ignore=F811,F821,D417
 
-  - repo: local
-    hooks:
-      - id: pytest
-        name: Run pytest
-        # entry: pytest -vv
-        entry: bash -c 'if [[ -z "${GITHUB_ACTIONS}" ]]; then pytest -vv; fi'
-        language: system
-        types: [python]
-        pass_filenames: false
-        always_run: true
+  # - repo: local
+  #   hooks:
+  #     - id: pytest
+  #       name: Run pytest
+  #       # entry: pytest -vv
+  #       entry: bash -c 'if [[ -z "${GITHUB_ACTIONS}" ]]; then pytest -vv; fi'
+  #       language: system
+  #       types: [python]
+  #       pass_filenames: false
+  #       always_run: true
